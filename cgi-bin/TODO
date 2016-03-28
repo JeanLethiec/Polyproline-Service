@@ -1,0 +1,9 @@
+- Problème lors de l'assignation : l'assignation est faite sur toutes les chaines, ce qui répète l'information (ex de 2CDC)
+- Finir l'assignation par envoi de fichier, enregistrer le fichier au bon endroit et le prendre en compte
+- Revoir la façon dont les données sont entrées dans la base (plusieurs petites transactions au lieu d'une seule)
+- Finir l'insertion par liste de PDB Id (bien prendre en compte le fichier, comme pour l'envoi de PDB)
+- Envoi de nouvelles données à partir d'un fichier de sortie ? par interface admin...
+- Revoir l'autocomplete en ne générant pas de liste des PDB mais en faisant une requete à la volée
+- Faire un setup.sh permettant la mise en place de l'arborescence vers un répertoire 
+- Modifier l'affichage de la query sur les resolutions/tailles pour être plus approprié
+- Rédiger la partie Use Cases de l'index

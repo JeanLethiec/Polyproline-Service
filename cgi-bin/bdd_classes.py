@@ -13,6 +13,10 @@
 #   Accès au troisième angle psi
 #           seq = structure.pross_assignation.angles[2][1]
 
+import numpy
+from Bio.PDB.PDBParser import PDBParser
+from Bio.PDB.Polypeptide import PPBuilder
+
 class PDB_structure:
     """
         Structure tridimensionnelle d'une protéine définie par son identifiant 
@@ -22,6 +26,8 @@ class PDB_structure:
         # Constructeur prenant en entrée l'identifiant PDB et la chaine
         self.pdb_id = pdb_id
         self.chain = chain
+        self.PDB_object = PDBParser()
+        self.structure = self.PDB_object.get_structure(pdb_id, "../data/" + pdb_id + ".pdb")
         
         # Initialement, aucune assignation n'est faite
         self.segno_assignation = None
@@ -42,6 +48,12 @@ class PDB_structure:
         
     def add_dssppii_assignation(self, assignation):
         self.dssppii_assignation = assignation
+        
+    def get_sequence(self):
+        ppb = PPBuilder()
+        polypeptide = ppb.build_peptides(self.structure[0][self.chain])
+        return polypeptide[0].get_sequence()
+        
         
 class Assignation:
     """
@@ -67,18 +79,22 @@ class Assignation:
         # ex : [(40, 20), (30, 40)]
         self.angles = angles
         
-if __name__ == "__main__":
+        
+if __name__ == "__main__": 
+    #print pdb_object.get_header()
     # Création d'une structure PDB
-    ex_pdb_id = "4RUN"
-    new_structure = PDB_structure(ex_pdb_id)
+    ex_pdb_id = "7ODC"
+    new_structure = PDB_structure(ex_pdb_id, "A")
+    
+    print new_structure.get_sequence()
     
     # Création d'une nouvelle assignation PROSS
-    ex_ss_sequence = 'hhHHHEEEpp'
-    ex_angles = [(40, 20), (30, 40)]
-    new_pross_assignation = Assignation('PROSS', ex_ss_sequence, ex_angles)
+    #ex_ss_sequence = 'hhHHHEEEpp'
+    #ex_angles = [(40, 20), (30, 40)]
+    #new_pross_assignation = Assignation('PROSS', ex_ss_sequence, ex_angles)
     
     # Ajout de l'assignation à la structure
-    new_structure.add_pross_assignation(new_pross_assignation)
+    #new_structure.add_pross_assignation(new_pross_assignation)
     
     # Affichage de la séquence en structures secondaires
-    print new_structure.pross_assignation.ss_sequence
+    #print new_structure.pross_assignation.ss_sequence

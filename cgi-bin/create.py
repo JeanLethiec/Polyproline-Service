@@ -18,8 +18,9 @@ print "<html>"
 ##### HEADER #####
 print '<head>'
 print '<meta charset="UTF-8">'
-print '<title>Création des tables</title>'
-print '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">'
+print '<title>Reset DB</title>'
+print '<link rel="stylesheet" href="/~jean/projet/js-css/bootstrap.css">'
+print '<link rel="stylesheet" href="/~jean/projet/js-css/style.css">'
 print '</head>'
 #### FIN DU HEADER ####
 
@@ -27,28 +28,44 @@ print '</head>'
 print '<body>'
 
 print '''
-<ul>
-    <li><a href="/~jean/projet/index.html">Home</a></li>
-    <li><a href="/~jean/projet/cgi-bin/search.py">Search</a></li>
-    <li><a href="/~jean/projet/cgi-bin/analyze.py">Analyze</a></li>
-    <li><a href="/~jean/projet/cgi-bin/about.py">About</a></li>
-    <li><a href="/~jean/projet/cgi-bin/create.py">Reset DB</a></li>
-    <li><a href="/~jean/projet/cgi-bin/insert.py">Populate DB</a></li>
-</ul>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/~jean/projet/index.html">Polyproline Service</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="/~jean/projet/cgi-bin/search.py">Search</a></li>
+        <li><a href="/~jean/projet/cgi-bin/add.py">Analyze</a></li>
+        <li><a href="/~jean/projet/cgi-bin/about.py">About</a></li>
+        <li><a href="/~jean/projet/cgi-bin/create.py">Reset DB</a></li>
+        <li><a href="/~jean/projet/cgi-bin/insert.py">Populate DB</a></li>
+        <li><a href="/~jean/projet/cgi-bin/sql.py">SQL</a></li>
+    </ul>
+  </div>
+</nav>
 '''
 
-print '<h3>Reset the database ?</h3>'
+print '''
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+<h3>Reset Database</h3>
+'''
 
 formulaire = cgi.FieldStorage()
 
 if formulaire.getvalue('pseudo') == None or formulaire.getvalue('password') == None:
     print '''
-    <form action="create.py" method="get">
-        <label for="pseudo">Pseudo:</label>
-        <input type="text" name="pseudo"/>
-        <label for="password">Password:</label>
-        <input type="text" name="password"/>
-        <input type="submit" value="Reset"/>
+    <form action="create.py" method="get" role="form">
+        <div class="form-group">
+            <label for="pseudo">Pseudo : </label>
+            <input class="form-control" type="text" name="pseudo"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password : </label>
+            <input class="form-control" type="password" name="password"/>
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
     </form>
     '''
 else:
@@ -107,6 +124,11 @@ else:
 
         print "Tables reset successfully."
 
+print '''
+</div>
+<div class="col-sm-1"></div>
+</div>
+'''
 print '</body>'
 #### FIN DU BODY ####
 

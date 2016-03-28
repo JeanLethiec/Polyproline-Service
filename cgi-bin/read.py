@@ -28,7 +28,8 @@ print "<html>"
 print '<head>'
 print '<meta charset="UTF-8">'
 print '<title>Data read</title>'
-print '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">'
+print '<link rel="stylesheet" href="/~jean/projet/js-css/bootstrap.css">'
+print '<link rel="stylesheet" href="/~jean/projet/js-css/style.css">'
 print '</head>'
 #### FIN DU HEADER ####
 
