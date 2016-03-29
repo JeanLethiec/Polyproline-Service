@@ -67,7 +67,7 @@ def get_PDBFile(pdb_id):
         #print "Mauvais ID entré !"
         return False
 
-def assign_pdb(pdb_id, chain):
+def assign_pdb(pdb_id, chain, filepath):
     #print "Récupération de la structure de", pdb_id 
     ############# Chemins vers les scripts ############
     dssp_path = "../bin/dsspcmbi"
@@ -85,21 +85,18 @@ def assign_pdb(pdb_id, chain):
     pross_extractor_path = "../bin/parsers/extract_PROSS2SEQ2D.pl"
     
     all1deg_path = "__RAMAPLOT=../bin/all1deg.data"
-    segno_cmd = all1deg_path + " " + segno_path + " -pdb " + "../data/" + str(pdb_id) + ".pdb"
+    segno_cmd = all1deg_path + " " + segno_path + " -pdb " + filepath
         
     if get_PDBFile(pdb_id):
         #print "Assignation pour", pdb_id, "<br \>"
-        structure = PDB_structure(pdb_id, chain)
-
-        ############# Chemin vers les fichiers pdb correspondants ############
-        pdb_file = "../data/" + pdb_id + ".pdb"
+        structure = PDB_structure(pdb_id, chain, filepath)
 
         ############# Appel des scripts ############
-        dssp_pipe = subprocess.Popen([dssp_path, pdb_file], 
+        dssp_pipe = subprocess.Popen([dssp_path, filepath], 
                                      stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE)
                                 
-        dssppii_pipe = subprocess.Popen(["perl", dssppii_path, pdb_file],
+        dssppii_pipe = subprocess.Popen(["perl", dssppii_path, filepath],
                                         stdout=subprocess.PIPE,
                                         stderr=subprocess.PIPE)
                                  
@@ -108,7 +105,7 @@ def assign_pdb(pdb_id, chain):
                                       shell=True, 
                                       stderr=subprocess.PIPE)
                                 
-        pross_pipe = subprocess.Popen(["python", pross_path, pdb_file],
+        pross_pipe = subprocess.Popen(["python", pross_path, filepath],
                                       stdout=subprocess.PIPE,
                                       stderr=subprocess.PIPE)
         

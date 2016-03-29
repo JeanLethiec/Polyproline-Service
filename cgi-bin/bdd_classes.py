@@ -22,12 +22,13 @@ class PDB_structure:
         Structure tridimensionnelle d'une protéine définie par son identifiant 
         PDB, pouvant faire l'objet d'assignation de structures secondaires
     """
-    def __init__(self, pdb_id, chain):
+    def __init__(self, pdb_id, chain, pdb_file):
         # Constructeur prenant en entrée l'identifiant PDB et la chaine
         self.pdb_id = pdb_id
         self.chain = chain
+        self.pdb_file = pdb_file
         self.PDB_object = PDBParser()
-        self.structure = self.PDB_object.get_structure(pdb_id, "../data/" + pdb_id + ".pdb")
+        self.structure = self.PDB_object.get_structure(pdb_id, self.pdb_file)
         
         # Initialement, aucune assignation n'est faite
         self.segno_assignation = None
@@ -84,7 +85,7 @@ if __name__ == "__main__":
     #print pdb_object.get_header()
     # Création d'une structure PDB
     ex_pdb_id = "7ODC"
-    new_structure = PDB_structure(ex_pdb_id, "A")
+    new_structure = PDB_structure(ex_pdb_id, "A", "../data/7ODC.pdb")
     
     print new_structure.get_sequence()
     

@@ -277,15 +277,6 @@ if data != ():
                     print '<td>', attribute, '</td>'
             print '</tr>'
         print '</tbody></table>'
-    
-    # Résultats pour PDB All    
-    elif formulaire.getvalue('pdb_all') != None:
-        print '<table class="tablesorter"><thead><tr><th>PDB ID</th></tr></thead><tbody>'
-        for entry in data_all:
-            print '<tr>'
-            print '<td>' + entry[0] + '</td>' 
-            print '</tr>'
-        print '</tbody></table>'
         
     # Résultats pour PDB ID
     else:
@@ -294,7 +285,7 @@ if data != ():
             print '<tr>'
             for i, attribute in enumerate(entry): 
                 if i == 0:
-                    print '<td><a href="http://www.rcsb.org/pdb/explore/explore.do?structureId=' + attribute + '"/>' + attribute + ' <a href="https://www.ebi.ac.uk/pdbsum/' + attribute + '" /><img src="/~jean/projet/pictures/pdbsum.gif" width="50px" height="25px"/></a><a href ="ramachandran.py?pdb_id=' + attribute + '">R</a></td>' 
+                    print '<td><a href="http://www.rcsb.org/pdb/explore/explore.do?structureId=' + attribute + '"/>' + attribute + ' <a href="https://www.ebi.ac.uk/pdbsum/' + attribute + '" /><img src="/~jean/projet/pictures/pdbsum.gif" width="50px" height="25px"/></a><a href ="ramachandran.py?pdb_id=' + attribute + '"><img src="/~jean/projet/pictures/ramachandran.gif" width="25px" height="35px"/></a></td>' 
                 elif i == 1:
                     print '<td>' + format_sequence(attribute) + '</td>'
                 elif i == 3:
@@ -303,6 +294,15 @@ if data != ():
                     print '<td>' + attribute + '</td>'
             print '</tr>'
         print '</tbody></table>'
+
+    # Résultats pour PDB All    
+if formulaire.getvalue('pdb_all') != None and data_all != []:
+    print '<table class="tablesorter"><thead><tr><th>PDB ID</th></tr></thead><tbody>'
+    for entry in data_all:
+        print '<tr>'
+        print '<td>' + entry[0] + '</td>' 
+        print '</tr>'
+    print '</tbody></table>'
         
         
 
