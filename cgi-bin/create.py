@@ -71,7 +71,7 @@ if formulaire.getvalue('pseudo') == None or formulaire.getvalue('password') == N
 else:
     # Accès et lecture de la BDD MySQL
     # Open database connection
-    db = MySQLdb.connect("localhost","root","p=jlt56!", "bdd_m2")
+    db = MySQLdb.connect("localhost","root","root", "bdd_m2")
     query = "SELECT count(*) FROM Users WHERE pseudo = \"{}\" AND password = \"{}\"".format(formulaire.getvalue('pseudo'), formulaire.getvalue('password'))
     cursor = db.cursor()
     cursor.execute(query)

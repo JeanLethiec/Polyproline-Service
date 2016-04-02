@@ -16,7 +16,7 @@ cgitb.enable()
 
 # Accès et lecture de la BDD MySQL
 # Open database connection
-db = MySQLdb.connect("localhost","root","p=jlt56!","bdd_m2" )
+db = MySQLdb.connect("localhost","root","root","bdd_m2" )
 
 print "Content-type: text/html\n\n"
 

@@ -17,7 +17,7 @@ cgitb.enable()
 
 # Accès et lecture de la BDD MySQL
 # Open database connection
-db = MySQLdb.connect("localhost","root","p=jlt56!","bdd_m2" )
+db = MySQLdb.connect("localhost","root","root","bdd_m2" )
 
 print "Content-type: text/html\n\n"
 
@@ -96,8 +96,20 @@ print '''
 formulaire = cgi.FieldStorage()
 
 if formulaire.getvalue('pdb_id') != None and formulaire.getvalue('pdb_chain') != None:
-    structure = assign_pdb(str(formulaire.getvalue('pdb_id')), str(formulaire.getvalue('pdb_chain')))
+    structure = assign_pdb(str(formulaire.getvalue('pdb_id')), str(formulaire.getvalue('pdb_chain')), "../data/" + str(formulaire.getvalue('pdb_id')) + ".pdb")
     insert_into_db([structure, ])
+    
+    print '''
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+    '''
+    print str(formulaire.getvalue('pdb_id')), 'added into the database.'
+    print '''
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    '''
     
 elif formulaire.has_key('pdb_file') and formulaire['pdb_file'].file and formulaire.getvalue('pdb_chain') != None:
     # Création de l'ID

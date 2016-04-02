@@ -2,6 +2,6 @@
 4 - Envoi de nouvelles données à partir d'un fichier de sortie ? par interface admin...
 1 - Le script de création de ramachandran n'utilise pas les angles donnés par les méthodes d'assignation !!
 3 - Revoir l'autocomplete en ne générant pas de liste des PDB mais en faisant une requete à la volée
-1 - Faire un setup.sh permettant la mise en place de l'arborescence vers un répertoire 
 3 - Modifier l'affichage de la query sur les resolutions/tailles pour être plus approprié
-2 - Rédiger la partie Use Cases de l'index
+1 - Faire un très bref Readme pour l'install
+1 - Faire quelques screenshots
